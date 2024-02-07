@@ -79,17 +79,22 @@ class Player extends SpriteAnimationComponent
 
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    int newDirection = -1;
     if(keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
-      playerDirection = 0;
-    } else if(keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
-      playerDirection = 1;
-    } else if(keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
-      playerDirection = 2;
-    } else if(keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
-      playerDirection = 3;
+      newDirection = 0;
+    } if(keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+      newDirection = 1;
+    } if(keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+      newDirection = 2;
+    } if(keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+      newDirection = 3;
     }
-    // print(playerDirection);
-    onLoad();
+
+    if(newDirection != playerDirection) {
+      playerDirection = newDirection;
+      onLoad();
+    }
+
     return true;
   }
 
